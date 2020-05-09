@@ -38,7 +38,12 @@ app.use(session({
     secret: 'Juke is the best dog',
     resave: false,
     saveUninitialized: true,
-}))
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 // Configure Passport and Sessions
 // CHANGE: USE "createStrategy" INSTEAD OF "authenticate"

@@ -9,8 +9,9 @@ module.exports = {
             email: req.body.email,
             image: req.body.image
         });
+
         await User.register(newUser, req.body.password);
-        res.redirect('/')
+        res.redirect('/');
     },
     // POST /login
     postLogin(req, res, next) {
@@ -24,5 +25,4 @@ module.exports = {
         req.logout();
         res.redirect('/');
     }
-
 }

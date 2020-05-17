@@ -40,6 +40,7 @@ module.exports = {
         res.redirect(`/posts/${post.id}`);
     },
     // Posts Show
+    // ⭐️⭐️⭐️
     async postShow(req, res, next) {
         let post = await Post.findById(req.params.id).populate({
             path: 'reviews',
@@ -51,8 +52,7 @@ module.exports = {
                 model: 'User'
             }
         });
-        console.log(post);
-
+        // ⭐️⭐️⭐️
         res.render('posts/show', { post });
     },
 

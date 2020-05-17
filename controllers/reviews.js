@@ -29,7 +29,14 @@ module.exports = {
     },
     // Reviews Destroy
     async reviewDestroy(req, res, next) {
-
+        // find the post by its id and update by deleting the review_id from the post.reviews array. 
+        let post = await Post.findByIdAndUpdate(req.params.id, {
+            $pull: { reviews: req.params.review_id }
+        });
+        // find the actual review document and remove it from the DB
+        await Review.findByIdAndRemove(req.params.review_id);
+        req.session.success = 'Review deleted successfully!';
+        res.redirect(`/posts/${req.params.id}`);
     }
 }
 

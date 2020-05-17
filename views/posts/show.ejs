@@ -54,6 +54,10 @@
                     <input type="number" name="review[rating]" min="1" max="5" step="1" required value="<%= review.rating %>">
                     <input type="submit" value="Update">
                 </form>
+
+                <form action="/posts/<%= post.id %>/reviews/<%= review._id %>/?_method=DELETE" method="POST">
+                    <input type="submit" value="Delete">
+                </form>
             </div>
             <% } %>
                 <hr>

@@ -43,10 +43,33 @@ module.exports = {
     async postShow(req, res, next) {
         let post = await Post.findById(req.params.id).populate({
             path: 'reviews',
-            options: { sort: { '_id': -1 } }
+            options: { sort: { '_id': -1 } },
+            populate: {
+                // For each review, we want to populate the author
+                path: 'author',
+                // Which model does the author populate from? 
+                model: 'User'
+            }
         });
+        console.log(post);
+
         res.render('posts/show', { post });
     },
+
+    /*
+    const PostSchema = new Schema({
+    title: String,
+    ...
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    reviews: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Review'
+    }]
+});
+    */
     // Posts Edit
     async postEdit(req, res, next) {
         let post = await Post.findById(req.params.id);

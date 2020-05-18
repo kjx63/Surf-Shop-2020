@@ -12,7 +12,7 @@ const User = require('./models/user');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-const seedPosts = require('./seeds');
+// const seedPosts = require('./seeds');
 // seedPosts();
 
 // require routes
@@ -67,6 +67,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
     req.user = {
         '_id': '5ec1004fda262b1816455847',
+        // '_id': '5ec14d39d962602b22eb687a',
         'username': 'Kenji'
     };
     // For any views it gets rendered, currentUser will be available
